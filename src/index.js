@@ -11,12 +11,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 
-app.post('/mensagem/', (req, res) => {
+app.get('/mensagem/', (req, res) => {
     const { text, context = {} } = req.body;
 
     const params = {
-        input: { 'text': 'quero fazer um pedido' },
-        workspace_id: '83a7daa6-ad77-4f43-934f-13ddaeee7c87'
+        workspace_id: '{83a7daa6-ad77-4f43-934f-13ddaeee7c87}',
+        input: { 'text': 'quero fazer um pedido' }
     };
 
     watson.message(params)
