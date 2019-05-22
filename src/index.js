@@ -15,13 +15,32 @@ app.post('/mensagem/', (req, res) => {
     const { text, context = {} } = req.body;
 
     const params = {
-        input: { 'Quero comprar um celular' },
-        workspace_id: '4fcb222b-423a-4607-a758-d6dbb461b1a0',
-        context,
+        input: { 'text': 'quero fazer um pedido' },
+        workspace_id: '83a7daa6-ad77-4f43-934f-13ddaeee7c87'
     };
 
-    watson.message(params, (err, response) => {
-        if (err) res.status(500).json(err);
-        res.json(response);
-    });
+    watson.message(params)
+        .then(res => {
+            console.log(JSON.stringify(res, null, 2));
+        })
+        .catch(err => {
+            console.log(err)
+        });
+
 });
+
+
+/*
+watson.message({
+    workspace_id: '{workspace_id}',
+    input: { 'text': 'Hello' }
+})
+    .then(res => {
+        console.log(JSON.stringify(res, null, 2));
+    })
+    .catch(err => {
+        console.log(err)
+    });
+*/
+
+app.listen(3000);
